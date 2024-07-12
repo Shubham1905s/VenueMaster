@@ -1,0 +1,47 @@
+.text{
+    text-align: center;
+    
+}
+
+.statustable{
+    width: 50%;
+    border-collapse: collapse;
+    margin: 50px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+
+.cotainer1{
+
+    margin: 20px;
+    
+}
+
+.clubs{
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.submit{
+   
+    border-radius: 5px;
+    width: 150px;
+    /* color: red; */
+    /* background-color: blanchedalmond; */
+    cursor: pointer;
+    color: rebeccapurple;
+    background-color: rgb(144, 140, 140);
+}

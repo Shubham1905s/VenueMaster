@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% comment %} <link rel="stylesheet" href="style.css" /> {% endcomment %}
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+    <div class="conatainer">
+      <div class="heading">
+        <p class="text">AUDITORIUM AND M.V.HALL booking</p>
+      </div>
+      <div class="audi">
+        <a href="audi.html">
+          <button class="audibtn" id="audibtn">AUDITORIUM</button>
+        </a>
+      </div>
+
+      <br />
+      <br />
+
+      <div class="MV">
+        <a href="mv.html">
+          <button class="MVbtn" id="MVbtn">M.V HALL</button>
+        </a>
+        <!-- <button class="MVbtn" id="MVbtn">M.V HALL</button> -->
+      </div>
+    </div>
+  </body>
+</html>

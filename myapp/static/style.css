@@ -1,0 +1,40 @@
+*{
+    background-color: #ffffff
+    
+    ;
+}
+
+.text{
+    text-align: center;
+
+}
+
+.audi{
+    text-align: center;
+    /* background-color: #934a8c; */
+    color: #ffffff;
+    /* cursor: pointer; */
+    /* border: 1px solid #000000; */
+  
+}
+
+.audibtn{
+    cursor: pointer;
+    background-color: rgb(220, 153, 71);
+    border-radius: 5%;
+}
+
+.MV{
+    /* top: 23px; */
+    text-align: center;
+    /* background-color: #934a8c; */
+    color: #ffffff;
+    /* cursor: pointer; */
+    /* border: 1px solid #000000; */
+}
+
+.MVbtn{
+    cursor: pointer;
+    background-color: rgb(220, 153, 71);
+    /* color: aqua; */
+}
