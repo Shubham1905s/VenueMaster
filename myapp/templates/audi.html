@@ -22,7 +22,7 @@
             <th required=''>End</th>
           </tr>
 
-          {% for booking in bookings %}
+          {% comment %} {% for booking in bookings %}
           <tr id="tr1">
             <td>{{ booking.club_name }}</td>
             <td>{{ booking.date }}</td>
@@ -41,7 +41,7 @@
         <p class="{{ message.tags }}">{{ message }}</p>
         {% endfor %}
     </div>
-    {% endif %}
+    {% endif %} {% endcomment %}
 
     
     <form action="{% url 'myapp:audi' %}" method="post">
