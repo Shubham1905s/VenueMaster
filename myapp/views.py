@@ -4,7 +4,13 @@ from .models import Booking
 from django.contrib import messages
 # from booking.models import Booking
 def home(request):
-    return render(request, 'home.html')
+    servicedata= Booking.objects.all().order_by('date')
+    
+    context={
+        'bookings' : servicedata
+    }
+    return render(request, 'home.html',context)
+
 
 def success(request):
     return render(request, 'success.html')

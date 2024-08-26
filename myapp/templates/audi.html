@@ -4,25 +4,67 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AUDITORIUM</title>
-    {% load static %}
+    {% load static %} {% comment %}
+    <link rel="stylesheet" href="{% static 'audi.css' %}" />
+    {% endcomment %}
     <link rel="stylesheet" href="{% static 'audi.css' %}" />
   </head>
   <body>
-    <div class="text">
+    <div class="text" id="AUDITORIUM">
       <h3>AUDITORIUM</h3>
     </div>
+    <form action="{% url 'myapp:audi' %}" method="post">
+      {% csrf_token %}
+      <div class="container2">
+
+
+        <div class="con1">
+          
+       
+
+
+        <label class="clubs" for="clubs">Select the club name:</label>
+        <select class="clubs" id="clubs" name="clubs">
+          <option value="" class="clbnm" disabled selected>-----</option>
+          <option id="ACM" value="ACM">ACM</option>
+          <option id="IEEE" value="IEEE">IEEE</option>
+          <option id="ROTARACT" value="Rotaract">Rotaract</option>
+          <option id="NSS" value="Lions Club">NSS</option>
+        </select>
+
+        <div class="date">
+          <label for="date">Date</label>
+          <input type="date" id="date" name="date" />
+        </div>
+
+        <div class="start">
+          <label for="from">Start</label>
+          <input type="time" id="from" name="from" />
+        </div>
+
+        <div class="end">
+          <label for="to">End</label>
+          <input type="time" id="to" name="to" />
+        </div>
+
+        <div class="submit">
+          <input class="submit" name="submit" type="submit" value="Submit" />
+        </div>
+      </div>
+      </div>
+    </form>
 
     <div class="container1">
       <div class="status" id="refresh">
         <table class="statustable">
           <tr id="tr1">
-            <th required=''>Club Name</th>
-            <th required=''>Date</th>
-            <th required=''>Start</th>
-            <th required=''>End</th>
+            <th>Club Name</th>
+            <th>Date</th>
+            <th>Start</th>
+            <th>End</th>
           </tr>
 
-          {% comment %} {% for booking in bookings %}
+          {% for booking in bookings %}
           <tr id="tr1">
             <td>{{ booking.club_name }}</td>
             <td>{{ booking.date }}</td>
@@ -33,48 +75,5 @@
         </table>
       </div>
     </div>
-
-
-    {% if messages %}
-    <div class="messages">
-        {% for message in messages %}
-        <p class="{{ message.tags }}">{{ message }}</p>
-        {% endfor %}
-    </div>
-    {% endif %} {% endcomment %}
-
-    
-    <form action="{% url 'myapp:audi' %}" method="post">
-      {% csrf_token %}
-      <div class="container2">
-        <label for="clubs">Select the club name:</label>
-        <select class="clubs" id="clubs" name="clubs" required>
-          <option value="" disabled selected>-----</option>
-          <option id="ACM" value="ACM">ACM</option>
-          <option id="IEEE" value="IEEE">IEEE</option>
-          <option id="ROTARACT" value="Rotaract">Rotaract</option>
-          <option id="NSS" value="NSS">NSS</option>
-        </select>
-
-        <div class="date">
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date" required/>
-        </div>
-
-        <div class="start">
-          <label for="from">Start</label>
-          <input type="time" id="from" name="from" required/>
-        </div>
-
-        <div class="end">
-          <label for="to">End</label>
-          <input type="time" id="to" name="to" required/>
-        </div>
-
-        <div class="submit">
-          <input class="submit" name="submit" type="submit" value="Submit" />
-        </div>
-      </div>
-    </form>
   </body>
 </html>
