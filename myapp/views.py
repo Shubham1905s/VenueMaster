@@ -1,6 +1,7 @@
 
 from django.shortcuts import render, redirect
 from .models import Booking
+from .models import authentication
 from django.contrib import messages
 # from booking.models import Booking
 def home(request):
@@ -11,12 +12,32 @@ def home(request):
     }
     return render(request, 'home.html',context)
 
+def login_view(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        try:
+            user = authentication.objects.get(email=email, password=password)
+            print("hello")
+            # Redirect to the Auditorium page after successful login
+            return redirect('myapp:audi')
+        except authentication.DoesNotExist:
+            messages.error(request, 'Invalid email or password')
+            return redirect('myapp:login')
+    return render(request, 'login.html')
+
+
 
 def success(request):
     return render(request, 'success.html')
 
+def login(request):
+    return render(request, 'login.html')
+
 def errorbook(request):
     return render(request, 'errbook.html')
+
 
 def audi(request):
     servicedata = Booking.objects.all().order_by('date')
