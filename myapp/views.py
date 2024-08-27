@@ -1,9 +1,17 @@
 
 from django.shortcuts import render, redirect
 from .models import Booking
-from .models import authentication
+from django.http import HttpResponse
+from .models import *
+from .forms import ModelForm
+from .forms import CreateUserForm
+# from .filters import OrderFilter 
+
+# from .models import User
 from django.contrib import messages
 # from booking.models import Booking
+from django.contrib.auth.forms import UserCreationForm
+
 def home(request):
     servicedata= Booking.objects.all().order_by('date')
     
@@ -12,21 +20,54 @@ def home(request):
     }
     return render(request, 'home.html',context)
 
-def login_view(request):
+
+# this is done for the login and registration of the page a king of demonstration
+
+def registerPage(request):
+    form = CreateUserForm()
     if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {'form' : form}
+    return render(request,'registerPage.html',context)
+    # return render(request,'registerPage.html',context)
 
-        try:
-            user = authentication.objects.get(email=email, password=password)
-            print("hello")
-            # Redirect to the Auditorium page after successful login
-            return redirect('myapp:audi')
-        except authentication.DoesNotExist:
-            messages.error(request, 'Invalid email or password')
-            return redirect('myapp:login')
-    return render(request, 'login.html')
+# this page is for the login
+def loginPage(request):
+    context = {}
+    return render(request,'register.html',context)
 
+
+# def login_view(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+
+#         try:
+#             authentication = authentication.objects.get(email=email, password=password)
+#             # print("hello")
+#             # Redirect to the Auditorium page after successful login
+#             return redirect('myapp:audi')
+#         except authentication.DoesNotExist:
+#             messages.error(request, 'Invalid email or password')
+#             return redirect('myapp:login')
+#     return render(request, 'login.html')
+
+
+# def login_view(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         password = request.POST.get('password')
+
+#         try:
+#             user = User.objects.get(email=email, password=password)
+#             # Redirect to the Auditorium page after successful login
+#             return redirect('myapp:audi')
+#         except User.DoesNotExist:
+#             messages.error(request, 'Invalid username or password')
+#             return redirect('myapp:login')
+#     return render(request, 'login.html')
 
 
 def success(request):

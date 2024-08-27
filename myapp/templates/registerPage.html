@@ -1,4 +1,4 @@
-{% comment %} <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,58 +8,49 @@
     <link rel="stylesheet" href="{% static 'login.css' %}" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
     <div class="container" id="container">
+      <!-- Sign Up Container -->
       <div class="form-container sign-up-container">
-        <!-- Replace the action with the correct URL -->
-        <form action="{% url 'myapp:login' %}" method="POST">
+        <!-- Django Form for Sign Up -->
+        <form method="POST" action="{% url 'myapp:registerPage' %}">
           {% csrf_token %}
           <h1>Create Account</h1>
-          <input type="text" name="name" placeholder="Name" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required />
+          {{ form.username.label_tag }}{{ form.username }}
+          {{ form.email.label_tag }}{{ form.email }}
+          {{ form.password1.label_tag }}{{ form.password1 }}
+          {{ form.password2.label_tag }}{{ form.password2 }}
           <button type="submit">Sign Up</button>
         </form>
       </div>
 
+      <!-- Sign In Container -->
       <div class="form-container sign-in-container">
-        <!-- Replace the action with the correct URL -->
-        <form action="{% url 'myapp:login' %}" method="POST">
+        <!-- Django Form for Login -->
+        <form action="{% url 'myapp:registerPage' %}" method="POST">
           {% csrf_token %}
           <h1>Login</h1>
           <input type="email" name="email" placeholder="Email" required />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required />
+          <input type="password" name="password" placeholder="Password" required />
           <a href="#">Forgot Your Password</a>
           <button type="submit">Login</button>
-          <!-- <a href="{% url 'myapp:audi' %}"> -->
         </form>
       </div>
 
+      <!-- Overlay Container -->
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
             <h1>Welcome Back!</h1>
-            <p>
-              To keep connected with us, please login with your personal info
-            </p>
+            <p>To keep connected with us, please login with your personal info</p>
             <button class="ghost" id="signIn">Sign In</button>
           </div>
           <div class="overlay-panel overlay-right">
             <h1>Hello!</h1>
-            <p>
-              Enter your details to sign up and start booking the Auditorium.
-            </p>
-
+            <p>Enter your details to sign up and start booking the Auditorium.</p>
             <button class="ghost" id="signUp">Sign Up</button>
           </div>
         </div>
@@ -81,4 +72,42 @@
       });
     </script>
   </body>
+</html>
+
+
+
+
+
+
+{% comment %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Register</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'timepass.css' %}">
+</head>
+<body>
+    <p><h1>this is register page</h1></p>
+
+    <form method="POST" action="">
+        {%csrf_token%}
+       {{form.username.label}}
+       {{form.username}}
+
+       {{form.email.label}}
+       {{form.email}}
+
+       {{form.password1.label}}
+       {{form.password1}}
+
+       {{form.password2.label}}
+       {{form.password2}}
+    
+        <input type="submit" name="Create User">
+    </form>
+</body>
 </html> {% endcomment %}
