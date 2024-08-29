@@ -16,41 +16,35 @@
     <form action="{% url 'myapp:audi' %}" method="post">
       {% csrf_token %}
       <div class="container2">
-
-
         <div class="con1">
-          
-       
+          <label class="clubs" for="clubs">Select the club name:</label>
+          <select class="clubs" id="clubs" name="clubs">
+            <option value="" class="clbnm" disabled selected>-----</option>
+            <option id="ACM" value="ACM">ACM</option>
+            <option id="IEEE" value="IEEE">IEEE</option>
+            <option id="ROTARACT" value="Rotaract">Rotaract</option>
+            <option id="NSS" value="Lions Club">NSS</option>
+          </select>
 
+          <div class="date">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" />
+          </div>
 
-        <label class="clubs" for="clubs">Select the club name:</label>
-        <select class="clubs" id="clubs" name="clubs">
-          <option value="" class="clbnm" disabled selected>-----</option>
-          <option id="ACM" value="ACM">ACM</option>
-          <option id="IEEE" value="IEEE">IEEE</option>
-          <option id="ROTARACT" value="Rotaract">Rotaract</option>
-          <option id="NSS" value="Lions Club">NSS</option>
-        </select>
+          <div class="start">
+            <label for="from">Start</label>
+            <input type="time" id="from" name="from" />
+          </div>
 
-        <div class="date">
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date" />
+          <div class="end">
+            <label for="to">End</label>
+            <input type="time" id="to" name="to" />
+          </div>
+
+          <div class="submit">
+            <input class="submit" name="submit" type="submit" value="Submit" />
+          </div>
         </div>
-
-        <div class="start">
-          <label for="from">Start</label>
-          <input type="time" id="from" name="from" />
-        </div>
-
-        <div class="end">
-          <label for="to">End</label>
-          <input type="time" id="to" name="to" />
-        </div>
-
-        <div class="submit">
-          <input class="submit" name="submit" type="submit" value="Submit" />
-        </div>
-      </div>
       </div>
     </form>
 
