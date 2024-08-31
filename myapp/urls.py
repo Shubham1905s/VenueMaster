@@ -8,7 +8,6 @@ urlpatterns = [
     path("audi/",audi,name="audi"),
     path("success/",success,name="success"),
     path("errbook/",errorbook,name="errbook"),
-    # path("login/",login,name="login"),
     path("registerPage/",registerPage,name="registerPage"),
     path("loginPage/",loginPage,name="loginPage")
 ]
