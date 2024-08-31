@@ -10,7 +10,7 @@ urlpatterns = [
     path("errbook/",errorbook,name="errbook"),
     # path("login/",login,name="login"),
     path("registerPage/",registerPage,name="registerPage"),
-    path("loginPage/",loginPage,name="loginPage"),
+    path("loginPage/",loginPage,name="loginPage")
 ]
 
 

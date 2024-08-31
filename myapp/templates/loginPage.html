@@ -13,7 +13,7 @@
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form method="POST" action="{% url 'myapp:registerPage' %}">
+        <form method="POST" action="{% url 'myapp:loginPage' %}">
           {% csrf_token %}
           <h1>Create Account</h1>
           {{ form.username.label_tag }}
@@ -28,15 +28,23 @@
       </div>
       <div class="form-container sign-in-container">
         <!-- Django Form for Login -->
-        <form action="{% url 'myapp:loginPage' %}" method="POST">
+        <form action="{% url 'myapp:registerPage' %}" method="POST">
           {% csrf_token %}
           <h1>Login</h1>
           <input type="username" name="username" placeholder="username" required />
-          <input type="password" name="password" placeholder="Password" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required />
           <a href="#">Forgot Your Password</a>
           <button type="submit">Login</button>
         </form>
       </div>
+      {%for message in messages%}
+      <p id="messages">{{message}}</p>
+      {%endfor %}
+
       <!-- Overlay Container -->
       <div class="overlay-container">
         <div class="overlay">
@@ -61,7 +69,6 @@
       const signUpButton = document.getElementById("signUp");
       const signInButton = document.getElementById("signIn");
       const container = document.getElementById("container");
-
 
       signUpButton.addEventListener("click", () => {
         container.classList.add("right-panel-active");
