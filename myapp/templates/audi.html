@@ -13,6 +13,12 @@
     <div class="text" id="AUDITORIUM">
       <h3>AUDITORIUM</h3>
     </div>
+
+    <form action="{% url 'myapp:logoutUser' %}" method="post" style="text-align: right; margin-top: 20px;">
+      {% csrf_token %}
+      <button type="submit" class="logout-btn">Logout</button>
+
+
     <form action="{% url 'myapp:audi' %}" method="post">
       {% csrf_token %}
       <div class="container2">
@@ -69,5 +75,6 @@
         </table>
       </div>
     </div>
+    
   </body>
 </html>

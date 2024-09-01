@@ -45,7 +45,9 @@ def loginPage(request):
             print("success")
             return redirect('myapp:audi')
     return render(request, 'loginPage.html')
-
+def logoutUser(request):
+    logout(request)
+    return redirect('myapp:home')
 def success(request):
     return render(request, 'success.html')
 

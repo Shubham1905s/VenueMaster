@@ -9,7 +9,8 @@ urlpatterns = [
     path("success/",success,name="success"),
     path("errbook/",errorbook,name="errbook"),
     path("registerPage/",registerPage,name="registerPage"),
-    path("loginPage/",loginPage,name="loginPage")
+    path("loginPage/",loginPage,name="loginPage"),
+    path("logout/",logoutUser,name="logoutUser")
 ]
 
 
