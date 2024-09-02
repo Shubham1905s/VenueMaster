@@ -9,14 +9,13 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login as auth_login ,logout
 
-
-
 def home(request):
     servicedata= Booking.objects.all().order_by('date')
     context={
         'bookings' : servicedata
     }
     return render(request, 'home.html',context)
+
 
 def registerPage(request):
     form = CreateUserForm()
@@ -45,6 +44,7 @@ def loginPage(request):
             print("success")
             return redirect('myapp:audi')
     return render(request, 'loginPage.html')
+
 def logoutUser(request):
     logout(request)
     return redirect('myapp:home')
@@ -65,6 +65,7 @@ def audi(request):
         date = request.POST.get('date')
         start_time = request.POST.get('from')
         end_time = request.POST.get('to')
+        
         conf_bookings = Booking.objects.filter(
             date = date,
             start_time__lt = end_time,
@@ -80,7 +81,7 @@ def audi(request):
             end_time=end_time
         )
        
-        return redirect('myapp:success')
+        return redirect('myapp:audi')
     context ={
         'bookings':servicedata,
     }

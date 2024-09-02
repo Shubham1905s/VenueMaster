@@ -4,20 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AUDITORIUM</title>
-    {% load static %} {% comment %}
-    <link rel="stylesheet" href="{% static 'audi.css' %}" />
-    {% endcomment %}
+    {% load static %} 
+
+    
     <link rel="stylesheet" href="{% static 'audi.css' %}" />
   </head>
   <body>
     <div class="text" id="AUDITORIUM">
       <h3>AUDITORIUM</h3>
     </div>
-
-    <form action="{% url 'myapp:logoutUser' %}" method="post" style="text-align: right; margin-top: 20px;">
-      {% csrf_token %}
-      <button type="submit" class="logout-btn">Logout</button>
-
 
     <form action="{% url 'myapp:audi' %}" method="post">
       {% csrf_token %}
@@ -75,6 +70,13 @@
         </table>
       </div>
     </div>
-    
+
+     <form action="{% url 'myapp:audi' %}" method="get" style="text-align: right; margin-top: 10px;">
+      <button type="submit" class="mvhall-btn">MV Hall</button>
+    </form>
+
+    <form action="{% url 'myapp:logoutUser' %}" method="post" style="text-align: right; margin-top: 20px;">
+      {% csrf_token %} 
+      <button type="submit" class="logout-btn">Logout</button>
   </body>
 </html>
