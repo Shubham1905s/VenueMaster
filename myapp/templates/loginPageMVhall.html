@@ -1,4 +1,4 @@
-{% comment %} <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,27 +13,27 @@
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <!-- Replace the action with the correct URL -->
-        <form action="{% url 'myapp:login' %}" method="POST">
+        <!-- <form method="POST" action="{% url 'myapp:loginPageMVhall' %}"> -->
+        <form method="POST" action="{% url 'myapp:loginPage' %}">
           {% csrf_token %}
           <h1>Create Account</h1>
-          <input type="text" name="name" placeholder="Name" required />
-          <input type="email" name="email" placeholder="Email" required />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required />
+          {{ form.username.label_tag }}
+          {{ form.username }} 
+          {{form.email.label_tag }}
+          {{ form.email }} 
+          {{ form.password1.label_tag}}
+          {{ form.password1 }} {{ form.password2.label_tag }}
+          {{ form.password2}}
           <button type="submit">Sign Up</button>
         </form>
       </div>
-
       <div class="form-container sign-in-container">
-        <!-- Replace the action with the correct URL -->
-        <form action="{% url 'myapp:login' %}" method="POST">
+        <!-- Django Form for Login -->
+        <!-- <form action="{% url 'myapp:regMVhall' %}" method="POST"> -->
+        <form action="{% url 'myapp:registerPage' %}" method="POST">
           {% csrf_token %}
           <h1>Login</h1>
-          <input type="email" name="email" placeholder="Email" required />
+          <input type="username" name="username" placeholder="username" required />
           <input
             type="password"
             name="password"
@@ -41,10 +41,13 @@
             required />
           <a href="#">Forgot Your Password</a>
           <button type="submit">Login</button>
-          <!-- <a href="{% url 'myapp:audi' %}"> -->
         </form>
       </div>
+      {%for message in messages%}
+      <p id="messages">{{message}}</p>
+      {%endfor %}
 
+      <!-- Overlay Container -->
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
@@ -59,15 +62,12 @@
             <p>
               Enter your details to sign up and start booking the Auditorium.
             </p>
-
             <button class="ghost" id="signUp">Sign Up</button>
           </div>
         </div>
       </div>
     </div>
-
     <script>
-      // JavaScript to handle the sign-in and sign-up toggle
       const signUpButton = document.getElementById("signUp");
       const signInButton = document.getElementById("signIn");
       const container = document.getElementById("container");
@@ -79,6 +79,11 @@
       signInButton.addEventListener("click", () => {
         container.classList.remove("right-panel-active");
       });
+
+      const errorMessage = "{{ error_message }}";
+      if (errorMessage) {
+        alert(errorMessage);
+      }
     </script>
   </body>
-</html> {% endcomment %}
+</html>

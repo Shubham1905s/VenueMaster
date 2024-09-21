@@ -10,8 +10,13 @@ urlpatterns = [
     path("errbook/",errorbook,name="errbook"),
     path("registerPage/",registerPage,name="registerPage"),
     path("loginPage/",loginPage,name="loginPage"),
-    path("logout/",logoutUser,name="logoutUser")
-]
+    path("logout/",logoutUser,name="logoutUser"),
+    path("MVhall/",MVhall,name="MVhall"),
+    path("registererror",registererror,name="registererror"),
+    path("regMVhall/",regMVhall,name="regMVhall"),
+    path("loginPageMVhall/",loginPageMVhall,name="loginPageMVhall")
+    
+    ]
 
 
 

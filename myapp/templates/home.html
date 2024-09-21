@@ -28,7 +28,7 @@
               <th>End Time</th>
             </tr>
             <!-- Loop through the bookings context variable here -->
-            {% for booking in bookings %}
+            {% for booking in auditorium_bookings %}
             <tr>
               <td>{{ booking.club_name }}</td>
               <td>{{ booking.date }}</td>
@@ -41,7 +41,9 @@
       </div>
 
       <div class="partition right">
-        <a href="mv.html">
+        {% comment %} <a href="{% url 'myapp:registerPage' %}"> {% endcomment %}
+        <a href="{% url 'myapp:registerPage' %}">
+        <!-- <a href="MVhall.html"> -->
           <button class="btn" id="MVbtn">M.V HALL</button>
         </a>
         <div class="booking-section">
@@ -53,8 +55,7 @@
               <th>Start Time</th>
               <th>End Time</th>
             </tr>
-            <!-- Reuse the same bookings context variable for simplicity -->
-            {% for booking in bookings %}
+            {% for booking in mvhall_bookings %}
             <tr>
               <td>{{ booking.club_name }}</td>
               <td>{{ booking.date }}</td>

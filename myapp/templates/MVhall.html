@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AUDITORIUM</title>
+    <title>M.V.Hall</title>
     {% load static %} 
 
     
@@ -11,25 +11,23 @@
   </head>
   <body>
     <div class="text" id="AUDITORIUM">
-      <h3>AUDITORIUM</h3>
+      <h3>M.V.Hall</h3>
     </div>
-     
+
+<
+<div class="mv-hall-info">
+  <h2>MV Hall Details</h2>
+  {% if mvhall_info %}
+    <p><strong>Description:</strong> {{ mvhall_info.description }}</p>
+    <p><strong>Capacity:</strong> {{ mvhall_info.capacity }} seats</p>
+    <p><strong>Facilities:</strong> {{ mvhall_info.facilities }}</p>
+  {% else %}
+    <p>No information available at the moment.</p>
+  {% endif %}
+</div>
 
 
-    <div class="mv-hall-info">
-      <h2>Auditorium Details</h2>
-      {% if auditorium_info %}
-      <p><strong>Description:</strong> {{ auditorium_info.description }}</p>
-      <p><strong>Capacity:</strong> {{ auditorium_info.capacity }} seats</p>
-      <p><strong>Facilities:</strong> {{ auditorium_info.facilities }}</p>
-      {% else %}
-      <p>No information available at the moment.</p>
-      {% endif %}
-  </div>
- 
-    
-
-    <form action="{% url 'myapp:audi' %}" method="post">
+    <form action="{% url 'myapp:MVhall' %}" method="post">
       {% csrf_token %}
       <div class="container2">
         <div class="con1">
@@ -94,8 +92,8 @@
       </div>
     </div>
 
-     <form action="{% url 'myapp:MVhall' %}" method="get" style="text-align: right; margin-top: 10px;">
-      <button type="submit" class="mvhall-btn">MV Hall</button>
+     <form action="{% url 'myapp:audi' %}" method="get" style="text-align: right; margin-top: 10px;">
+      <button type="submit" class="mvhall-btn">AUDITORIUM</button>
     </form>
                   
     <form action="{% url 'myapp:logoutUser' %}" method="post" style="text-align: right; margin-top: 20px;">

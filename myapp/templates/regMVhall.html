@@ -13,8 +13,9 @@
   <body>
     <div class="container" id="container">
       <div class="form-container sign-up-container">
-        <form method="POST" action="{% url 'myapp:loginPage' %}">
+        <form method="POST" action="{% url 'myapp:regMVhall' %}">
           {% csrf_token %}
+
           <h1>Create Account</h1>
           {{ form.username.label_tag }}
           {{ form.username }} 
@@ -24,28 +25,21 @@
           {{ form.password1 }} {{ form.password2.label_tag }}
           {{ form.password2}}
           <button type="submit">Sign Up</button>
+          
         </form>
       </div>
       <div class="form-container sign-in-container">
-   
-        <form action="{% url 'myapp:registerPage' %}" method="POST">
+        <!-- Django Form for Login -->
+        <form action="{% url 'myapp:loginPageMVhall' %}" method="POST">
           {% csrf_token %}
           <h1>Login</h1>
           <input type="username" name="username" placeholder="username" required />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required />
+          <input type="password" name="password" placeholder="Password" required />
           <a href="#">Forgot Your Password</a>
           <button type="submit">Login</button>
         </form>
       </div>
-      {%for message in messages%}
-      <p id="messages">{{message}}</p>
-      {%endfor %}
-
-      
+     
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
@@ -69,6 +63,7 @@
       const signUpButton = document.getElementById("signUp");
       const signInButton = document.getElementById("signIn");
       const container = document.getElementById("container");
+
 
       signUpButton.addEventListener("click", () => {
         container.classList.add("right-panel-active");

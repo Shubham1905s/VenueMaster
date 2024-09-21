@@ -134,3 +134,65 @@ input[type="submit"]:hover {
 .statustable tr:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+
+.mv-hall-info {
+    position: absolute;
+    top: 120px; 
+    right: 20px; 
+    background-color: rgba(0, 0, 0, 0.7); 
+    border: 2px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    color: white;
+    font-size: 16px;
+}
+
+.mv-hall-info h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ef4648; 
+}
+
+.mv-hall-info p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .mv-hall-info {
+        position: relative; 
+        top: auto;
+        right: auto;
+        width: 100%; 
+        margin-top: 20px; 
+        padding: 15px;
+    }
+
+    .mv-hall-info h2 {
+        font-size: 22px;
+    }
+
+    .mv-hall-info p {
+        font-size: 14px;
+    }
+}
+@media (max-width: 480px) {
+    .mv-hall-info {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+    }
+
+    .mv-hall-info h2 {
+        font-size: 20px;
+    }
+
+    .mv-hall-info p {
+        font-size: 13px;
+    }
+}
