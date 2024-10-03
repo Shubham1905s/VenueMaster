@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User     
 from django.db import models
-from .models import UploadFile
+from .models import AuditoriumFiles
    
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -12,14 +12,14 @@ class CreateUserForm(UserCreationForm):
         
 class UploadFileForm(forms.ModelForm):
     class Meta:
-        model = UploadFile
+        model = AuditoriumFiles
         fields = ['title', 'file']
         
         
 from django import forms
-from .models import MVHallUploadFile
+from .models import MVHallFiles
 
 class MVHallUploadFileForm(forms.ModelForm):
     class Meta:
-        model = MVHallUploadFile
+        model = MVHallFiles
         fields = ['title', 'file']

@@ -19,7 +19,7 @@ def upload_file(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('myapp:success')  # Redirect to the success page
+            return redirect('myapp:success')  
         else:
             return render(request, "upload.html", {"form": form, "error": "Failed to upload file. Please try again."})
     else:
@@ -32,7 +32,7 @@ def upload_mvhall_file(request):
         form = MVHallUploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('success_page')  # Replace with your actual success page
+            return redirect('myapp:success')  
     else:
         form = MVHallUploadFileForm()
     return render(request, 'upload_mvhall_file.html', {'form': form})

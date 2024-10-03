@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Booking,MVHallBooking
-from .models import AuditoriumInfo,MVHallInfo,UploadFile
+from .models import AuditoriumInfo,MVHallInfo,AuditoriumFiles
 # from .models import UploadFileForm
 
 @admin.register(Booking)
@@ -11,14 +11,14 @@ admin.site.register(MVHallBooking)
 admin.site.register(AuditoriumInfo)
 admin.site.register(MVHallInfo)
 
-@admin.register(UploadFile)
+@admin.register(AuditoriumFiles)
 class UploadFileAdmin(admin.ModelAdmin):
     list_display = ('title', 'file')
     
-from .models import MVHallUploadFile
+from .models import MVHallFiles
 # @admin.register(MVHallUploadFile)
 class MVHallUploadFileAdmin(admin.ModelAdmin):
     list_display = ('title', 'uploaded_at')  # Display these fields in the admin list view
     search_fields = ('title',)  # Enable search by title
 
-admin.site.register(MVHallUploadFile, MVHallUploadFileAdmin)
+admin.site.register(MVHallFiles, MVHallUploadFileAdmin)

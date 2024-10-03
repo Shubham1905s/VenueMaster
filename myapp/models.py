@@ -37,7 +37,7 @@ class MVHallInfo(models.Model):
         return f"MV Hall Information"
     
     
-class UploadFile(models.Model):
+class AuditoriumFiles(models.Model):
     title = models.CharField(max_length=50)
     file = models.FileField()
 
@@ -47,7 +47,7 @@ class UploadFile(models.Model):
     
    
 
-class MVHallUploadFile(models.Model):
+class MVHallFiles(models.Model):
     title = models.CharField(max_length=100)
     file = models.FileField(upload_to='mvhall_uploads/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
