@@ -8,10 +8,34 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login as auth_login ,logout
-#testing for the login to both the pages for audi and MVhall
 from django.contrib.auth.decorators import login_required
 from .models import AuditoriumInfo,MVHallInfo
+from django.http import HttpResponseRedirect
+from .forms import MVHallUploadFileForm
 
+from .forms import UploadFileForm
+def upload_file(request):
+    if request.method == "POST":
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('myapp:success')  # Redirect to the success page
+        else:
+            return render(request, "upload.html", {"form": form, "error": "Failed to upload file. Please try again."})
+    else:
+        form = UploadFileForm()
+    return render(request, "upload.html", {"form": form})
+
+
+def upload_mvhall_file(request):
+    if request.method == 'POST':
+        form = MVHallUploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('success_page')  # Replace with your actual success page
+    else:
+        form = MVHallUploadFileForm()
+    return render(request, 'upload_mvhall_file.html', {'form': form})
 
 def home(request):
     auditorium_bookings =  Booking.objects.all().order_by('date')
@@ -204,4 +228,5 @@ def loginPageMVhall(request):
 #             messages.error(request, 'Invalid credentials')
 #             # return redirect('myapp:loginPageMVhall')
 #     return render(request, 'loginPageMVhall.html')
+
 

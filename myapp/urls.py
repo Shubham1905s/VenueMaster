@@ -14,8 +14,9 @@ urlpatterns = [
     path("MVhall/",MVhall,name="MVhall"),
     path("registererror",registererror,name="registererror"),
     path("regMVhall/",regMVhall,name="regMVhall"),
-    path("loginPageMVhall/",loginPageMVhall,name="loginPageMVhall")
-    
+    path("loginPageMVhall/",loginPageMVhall,name="loginPageMVhall"),
+    path("upload_file/",upload_file,name ="upload_file"),
+    path("upload_mvhall_file",upload_mvhall_file,name="upload_mvhall_file")
     ]
 
 
