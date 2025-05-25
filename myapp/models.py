@@ -1,4 +1,11 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django.core.validators import MaxValueValidator, MinValueValidator
+from .managers import CustomUserManager
+
+
+
 
 class Booking(models.Model):
     club_name = models.CharField(max_length=100)
@@ -54,3 +61,19 @@ class MVHallFiles(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+    
+class CustomUser(AbstractUser):
+    username = None
+    email = models.EmailField(_("email address"), unique=True)
+    USN = models.CharField(max_length=10)
+    USERNAME_FIELD = "email"
+    is_registered=models.BooleanField(default=False)
+    year=models.CharField(max_length=4,default='2025')
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
+    def __str__(self):
+        return self.email

@@ -1,4 +1,4 @@
-
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .models import Booking
 from django.http import HttpResponse
@@ -7,13 +7,17 @@ from .forms import ModelForm
 from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import authenticate,login as auth_login ,logout
+from django.contrib.auth import authenticate,login as login ,logout
 from django.contrib.auth.decorators import login_required
 from .models import AuditoriumInfo,MVHallInfo
 from django.http import HttpResponseRedirect
 from .forms import MVHallUploadFileForm
-
+import random
 from .forms import UploadFileForm
+from django.core.mail import send_mail
+from home.settings import EMAIL_HOST_USER
+import string
+from django.conf import settings
 def upload_file(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
@@ -64,17 +68,7 @@ def registerPage(request):
     return render(request, 'registerPage.html', {'form': form})
 
 def loginPage(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        print(username, password)
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            auth_login(request, user)  
-            print("success")
-            return redirect('myapp:audi')
-    return render(request, 'loginPage.html')
+    return render(request,'myapp/login.html')
 
 
 
@@ -165,68 +159,48 @@ def errorbook(request):
 def registererror(request):
     return render(request, 'registererror.html')
 
-def regMVhall(request):
-    form = CreateUserForm()
+def signin(request):
     if request.method == 'POST':
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request, f'Account Created Successfully for {user}')
-            return redirect('myapp:loginPage')
-        else:
-            messages.error(request, 'Registration Failed. Please correct the errors below.')
-            return render(request, 'registererror.html', {'form': form})
-    context = {'form': form}
-    return render(request, 'registerPage.html', {'form': form},context)
-
-def loginPageMVhall(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        print(username, password)
-        user = authenticate(request, username=username, password=password)
-
+        email = request.POST['email']
+        password = request.POST['password']
+        print(email,password)
+        user = authenticate(request, email=email, password=password)
         if user is not None:
-            auth_login(request, user)  
+            login(request,user)
             print("success")
-            return redirect('myapp:MVhall')
-        else :
-            messages.error(request, 'Invalid credentials')
-            # return redirect('myapp:loginPageMVhall')
-    return render(request, 'loginPage.html')
+            return JsonResponse({'data':'success'})
+        else:
+            return HttpResponse(status=401)
+    return HttpResponse(status=404)
+def generate_random_password(length):
+    characters = string.ascii_letters + string.digits
+    return ''.join(random.choice(characters) for _ in range(length))
 
+def register(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        USN=request.POST['USN']
+        name=request.POST['name']
+        year=request.POST['year']
+        print(email,USN,name,year)
+        password = generate_random_password(6)
+        if CustomUser.objects.filter(email=email).exists():
+            val=CustomUser.objects.get(email=email)
+            val.set_password(password)
+        else:
+            print("he must login")
+            val=CustomUser(email=email,USN=USN,first_name=name,year=year)
+            val.set_password(password)
+        send_mail(
+            'Credentials for ACM Nexus',
+            "Your username is "+email+"\n"+'Your password is '+password,
+            EMAIL_HOST_USER,
+            [email],
+            fail_silently=False,
+        )
+        val.save()
+        return render(request,'myapp/confirmation.html')
+    return HttpResponse(status=404)
 
-
-# def regMVhall(request):
-#     form = CreateUserForm()
-#     if request.method == 'POST':
-#         form = CreateUserForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             user = form.cleaned_data.get('username')
-#             messages.success(request, f'Account Created Successfully for {user}')
-#             return redirect('myapp:loginPageMVhall')
-#         else:
-#             messages.error(request, 'Registration Failed. Please correct the errors below.')
-#             return render(request, 'registererror.html', {'form': form})
-#     context = {'form': form}
-#     return render(request, 'regMVhall.html', {'form': form},context)
-
-# def loginPageMVhall(request):
-#     if request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         print(username, password)
-#         user = authenticate(request, username=username, password=password)
-
-#         if user is not None:
-#             auth_login(request, user)  
-#             print("success")
-#             return redirect('myapp:MVhall')
-#         else :
-#             messages.error(request, 'Invalid credentials')
-#             # return redirect('myapp:loginPageMVhall')
-#     return render(request, 'loginPageMVhall.html')
 
 
