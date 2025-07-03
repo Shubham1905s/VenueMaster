@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from .managers import CustomUserManager
-
+from django.contrib.auth.models import User
 
 
 
@@ -64,16 +64,16 @@ class MVHallFiles(models.Model):
     
     
     
-class CustomUser(AbstractUser):
-    username = None
-    email = models.EmailField(_("email address"), unique=True)
-    USN = models.CharField(max_length=10)
-    USERNAME_FIELD = "email"
-    is_registered=models.BooleanField(default=False)
-    year=models.CharField(max_length=4,default='2025')
-    REQUIRED_FIELDS = []
+# class CustomUser(AbstractUser):
+#     username = None
+#     email = models.EmailField(_("email address"), unique=True)
+#     USN = models.CharField(max_length=10)
+#     USERNAME_FIELD = "email"
+#     is_registered=models.BooleanField(default=False)
+#     year=models.CharField(max_length=4,default='2025')
+#     REQUIRED_FIELDS = []
 
-    objects = CustomUserManager()
+#     objects = CustomUserManager()
 
-    def __str__(self):
-        return self.email
+#     def __str__(self):
+#         return self.email

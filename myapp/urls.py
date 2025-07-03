@@ -1,6 +1,6 @@
-from django.urls import path
+from django.urls import include, path
 from .views import *
-
+from .views import authView, home
 app_name="myapp"
 
 urlpatterns = [
@@ -16,7 +16,9 @@ urlpatterns = [
     path("regMVhall/",MVhall,name="regMVhall"),
     # path("loginPageMVhall/",loginPageMVhall,name="loginPageMVhall"),
     path("upload_file/",upload_file,name ="upload_file"),
-    path("upload_mvhall_file",upload_mvhall_file,name="upload_mvhall_file")
+    path("upload_mvhall_file",upload_mvhall_file,name="upload_mvhall_file"),
+    path("signup/", authView, name="authView"),
+    path("accounts/", include("django.contrib.auth.urls")),
     ]
 
 

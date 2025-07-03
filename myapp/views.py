@@ -4,7 +4,7 @@ from .models import Booking
 from django.http import HttpResponse
 from .models import *
 from .forms import ModelForm
-from .forms import CreateUserForm
+# from .forms import CreateUserForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login as login ,logout
@@ -15,9 +15,26 @@ from .forms import MVHallUploadFileForm
 import random
 from .forms import UploadFileForm
 from django.core.mail import send_mail
-from home.settings import EMAIL_HOST_USER
+from django.contrib.auth.decorators import login_required
+# from home.settings import EMAIL_HOST_USER
 import string
 from django.conf import settings
+from django.contrib.auth.models import User
+
+
+
+def authView(request):
+ if request.method == "POST":
+  form = UserCreationForm(request.POST or None)
+  if form.is_valid():
+   form.save()
+   return redirect("myapp:login")
+ else:
+  form = UserCreationForm()
+ return render(request, "registration/signup.html", {"form": form})
+
+
+
 def upload_file(request):
     if request.method == "POST":
         form = UploadFileForm(request.POST, request.FILES)
@@ -41,6 +58,7 @@ def upload_mvhall_file(request):
         form = MVHallUploadFileForm()
     return render(request, 'upload_mvhall_file.html', {'form': form})
 
+@login_required
 def home(request):
     auditorium_bookings =  Booking.objects.all().order_by('date')
     mvhall_bookings =  MVHallBooking.objects.all().order_by('date')

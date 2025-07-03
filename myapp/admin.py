@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Booking,MVHallBooking
 from .models import AuditoriumInfo,MVHallInfo,AuditoriumFiles
 # from .models import UploadFileForm
-
+from django.contrib.auth.models import User
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('club_name', 'date', 'start_time', 'end_time')

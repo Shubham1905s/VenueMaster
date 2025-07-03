@@ -1,19 +1,15 @@
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import CustomUser
+
 from django.db import models
 from .models import AuditoriumFiles
-   
+from django.contrib.auth.models import User
 # class CreateUserForm(UserCreationForm):
     # class Meta:
         # model = User
         # fields = ['username', 'email', 'password1', 'password2']
         
-class CreateUserForm(UserCreationForm):
-    class Meta:
-        model = CustomUser
-        fields = ['email', 'USN', 'first_name', 'year', 'password1', 'password2']
 
         
 class UploadFileForm(forms.ModelForm):
