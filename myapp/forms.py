@@ -25,3 +25,18 @@ class MVHallUploadFileForm(forms.ModelForm):
     class Meta:
         model = MVHallFiles
         fields = ['title', 'file']
+
+
+# class UploadFileForm(forms.ModelForm):
+#     class Meta:
+#         model = AuditoriumFiles
+#         fields = ['title', 'file']
+        
+        
+# from django import forms
+# from .models import MVHallFiles
+
+# class MVHallUploadFileForm(forms.ModelForm):
+#     class Meta:
+#         model = MVHallFiles
+#         fields = ['title', 'file']
