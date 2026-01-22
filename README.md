@@ -1,3 +1,4 @@
+
 # VenueMaster
 
 A comprehensive venue management system built with Django that facilitates booking and management of auditoriums and seminar halls.
@@ -192,3 +193,6 @@ For support and queries:
 ---
 
 **Built with Django 5.0.1** | **SQLite Database** | **Python 3.8+**
+
+Web App for Booking the Venues. Making easy for Club Coordinators from rushing to take the permissions, made everything online.
+
